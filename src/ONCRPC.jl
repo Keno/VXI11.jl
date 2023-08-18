@@ -1,5 +1,7 @@
 module ONCRPC
 
+using Sockets: TCPSocket
+
 export make_rpc
 
 @enum msg_type CALL=0 REPLY=1
