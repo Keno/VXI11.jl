@@ -1,0 +1,6 @@
+name = "VXI11"
+uuid = "2278c990-9481-408b-bd69-eafa1eddb35d"
+version = "0.1.0"
+
+[deps]
+Sockets = "6462fe0b-24de-5631-8697-dd941f90decc"

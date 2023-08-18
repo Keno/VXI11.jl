@@ -1,5 +1,7 @@
 module VXI11
 
+using Sockets: IPAddr, connect
+
 include("ONCRPC.jl")
 using .ONCRPC
 include("rpc.jl")
@@ -19,11 +21,11 @@ function Link(c::ONCRPC.Channel, device="inst0")
     link = create_link(c, Create_LinkParms(rand(Int32), false, 10000, device))
     @assert link.error == 0
     l = Link(c, link.link, link.maxRecvSize)
-    finalizer(l, close)
+    finalizer(close, l)
     l
 end
 
-function Link(ip::Base.IPAddr, port, device="inst0")
+function Link(ip::IPAddr, port, device="inst0")
     Link(ONCRPC.Channel(connect(ip, port)), device)
 end
 
